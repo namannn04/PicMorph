@@ -8,11 +8,18 @@ export default {
   ],
   theme: {
     extend: {
+      spacing: {
+        '128': '32rem',
+        '144': '36rem',
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        neutral: {
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          800: '#333333',
+        },
       },
     },
-  },
+  },  
   plugins: [],
 } satisfies Config;
