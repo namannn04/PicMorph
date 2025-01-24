@@ -1,7 +1,11 @@
-// app/layout.tsx
+import "../styles/global.css";
+
 export const metadata = {
-  title: "Image Converter",
-  description: "Easily convert images between formats like PNG, JPG, and WEBP.",
+  title: "PicMorph",
+  description: "Effortlessly convert images between formats with ease.",
+  icons: {
+    icon: "/PicMorph.png",
+  },
 };
 
 export default function RootLayout({
@@ -11,15 +15,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gray-100 text-gray-900">
-        <header className="bg-gray-800 text-white p-4 text-center">
-          <h1 className="text-2xl font-semibold">Image Converter</h1>
+      <body className="bg-gray-50 text-gray-800 font-sans">
+        <header className="bg-white shadow-md">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center">
+            <h1 className="text-3xl font-extrabold text-[#ff2d2d]">PicMorph</h1>
+          </div>
         </header>
-        <main className="flex flex-col items-center justify-center p-6">
-          {children}
-        </main>
-        <footer className="bg-gray-800 text-white p-4 text-center mt-auto">
-          <p>&copy; 2025 Image Converter. All rights reserved.</p>
+        <main className="max-w-7xl mx-auto px-6 py-8">{children}</main>
+        <footer className="bg-gray-100 mt-10 py-6 text-center text-sm text-gray-500">
+          <p>&copy; 2025 PicMorph. All rights reserved.</p>
         </footer>
       </body>
     </html>

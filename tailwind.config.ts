@@ -12,12 +12,16 @@ export default {
         '128': '32rem',
         '144': '36rem',
       },
+      fontFamily: {
+        sans: ["Inter", "Sans-serif"],
+      },
       colors: {
-        neutral: {
-          100: '#f5f5f5',
-          200: '#e5e5e5',
-          800: '#333333',
-        },
+        primary: "#333",
+        secondary: "#555",
+        accent: "#f5f5f5",
+      },
+      boxShadow: {
+        card: "0 4px 8px rgba(0, 0, 0, 0.1)",
       },
     },
   },  
