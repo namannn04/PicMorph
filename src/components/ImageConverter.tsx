@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Loader2, UploadCloud } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const ImageConverter = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -79,7 +80,7 @@ const ImageConverter = () => {
           transition={{ delay: 0.2 }} 
           className="mt-6 bg-white border border-gray-300 rounded-xl p-4 shadow-lg"
         >
-          <img
+          <Image
             src={preview}
             alt="Preview"
             className="w-full max-h-60 object-contain rounded-md mb-4"

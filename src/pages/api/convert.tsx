@@ -43,6 +43,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       convertedImage = await sharp(buffer).toFormat(targetFormat as keyof sharp.FormatEnum).toBuffer();
     } catch (error) {
+      console.log(error);
       return res.status(500).json({ message: "Conversion failed" });
     }
 

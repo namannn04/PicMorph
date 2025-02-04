@@ -1,4 +1,8 @@
 import "../styles/globals.css";
+import { Inter } from "next/font/google";
+import Image from "next/image";
+
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 export default function RootLayout({
   children,
@@ -6,18 +10,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={inter.className}>
       <body className="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
         {/* Header */}
         <header className="bg-white shadow-md sticky top-0 z-50">
           <div className="container mx-auto px-6 py-4 flex justify-center items-center">
-            <img src = "/PicMorph.png" className="h-10 w-10 mr-2" />
+            <Image
+              src="/PicMorph.png"
+              alt="PicMorph Logo"
+              width={40}
+              height={40}
+              priority
+            />
             <h1 className="text-2xl font-bold text-indigo-600">PicMorph</h1>
           </div>
         </header>
