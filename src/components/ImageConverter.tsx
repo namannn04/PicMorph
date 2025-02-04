@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { Loader2, UploadCloud } from "lucide-react";
+import { motion } from "framer-motion";
 
 const ImageConverter = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -45,47 +47,61 @@ const ImageConverter = () => {
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.9 }} 
+      animate={{ opacity: 1, scale: 1 }} 
+      transition={{ duration: 0.5 }} 
+      className="max-w-lg mx-auto mt-10 bg-white shadow-xl rounded-2xl p-8 border border-gray-200 backdrop-blur-lg bg-opacity-90"
+    >
+      <h1 className="text-3xl font-extrabold text-gray-900 text-center mb-6">
         Image Converter
       </h1>
 
-      <input
-        type="file"
-        accept=".jpg,.jpeg,.png,.webp"
-        onChange={handleFileChange}
-        className="mb-4 block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-indigo-100 file:text-indigo-700 hover:file:bg-indigo-200 cursor-pointer"
-      />
+      {/* File Upload */}
+      <label className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-indigo-500 transition bg-gray-50 shadow-md">
+        <input
+          type="file"
+          accept=".jpg,.jpeg,.png,.webp"
+          onChange={handleFileChange}
+          className="hidden"
+        />
+        <UploadCloud className="h-10 w-10 text-gray-500 mb-2" />
+        <p className="text-gray-600 font-medium text-center">
+          {selectedFile ? selectedFile.name : "Drag & Drop or Click to Upload"}
+        </p>
+      </label>
 
+      {/* Preview */}
       {preview && selectedFile && (
-        <div className="mb-6 border border-gray-300 rounded-lg p-4 bg-gray-50 shadow-sm">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ delay: 0.2 }} 
+          className="mt-6 bg-white border border-gray-300 rounded-xl p-4 shadow-lg"
+        >
           <img
             src={preview}
             alt="Preview"
             className="w-full max-h-60 object-contain rounded-md mb-4"
           />
-          <p className="text-sm text-gray-600">
-            <span className="font-semibold">Name:</span> {selectedFile.name} |{" "}
+          <p className="text-sm text-gray-500">
             <span className="font-semibold">Size:</span>{" "}
             {(selectedFile.size / 1024).toFixed(2)} KB |{" "}
             <span className="font-semibold">Format:</span>{" "}
             {selectedFile.type.split("/")[1]}
           </p>
-        </div>
+        </motion.div>
       )}
 
-      <div className="mb-6">
-        <label
-          htmlFor="format"
-          className="block text-sm font-medium text-gray-700 mb-2"
-        >
+      {/* Format Selection */}
+      <div className="mt-6">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
           Convert to:
         </label>
         <select
-          id="format"
           value={targetFormat}
           onChange={(e) => setTargetFormat(e.target.value)}
-          className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition"
         >
           <option value="" disabled>
             Select a format
@@ -100,18 +116,19 @@ const ImageConverter = () => {
         </select>
       </div>
 
-      <button
+      <motion.button
+        whileTap={{ scale: 0.95 }}
         onClick={handleConvert}
         disabled={!selectedFile || !targetFormat || loading}
-        className={`w-full py-2 px-4 rounded-lg text-white font-semibold shadow-md ${
+        className={`mt-6 w-full py-3 px-4 rounded-lg font-semibold shadow-md text-white transition ${
           loading
             ? "bg-indigo-300 cursor-not-allowed"
-            : "bg-indigo-600 hover:bg-indigo-700"
+            : "bg-orange-600 hover:bg-orange-800"
         }`}
       >
-        {loading ? "Converting..." : "Convert"}
-      </button>
-    </div>
+        {loading ? <Loader2 className="animate-spin mx-auto" /> : "Convert"}
+      </motion.button>
+    </motion.div>
   );
 };
 
