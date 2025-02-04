@@ -1,12 +1,4 @@
-import "../styles/global.css";
-
-export const metadata = {
-  title: "PicMorph",
-  description: "Effortlessly convert images between formats with ease.",
-  icons: {
-    icon: "/PicMorph.png",
-  },
-};
+import "../styles/globals.css";
 
 export default function RootLayout({
   children,
@@ -15,15 +7,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-gray-50 text-gray-800 font-sans">
-        <header className="bg-white shadow-md">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center">
-            <h1 className="text-3xl font-extrabold text-[#ff2d2d]">PicMorph</h1>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
+        <header className="bg-indigo-600 text-white shadow-md">
+          <div className="container mx-auto px-6 py-4 flex justify-center items-center">
+            <h1 className="text-xl font-bold">PicMorph</h1>
           </div>
         </header>
-        <main className="max-w-7xl mx-auto px-6 py-8">{children}</main>
-        <footer className="bg-gray-100 mt-10 py-6 text-center text-sm text-gray-500">
-          <p>&copy; 2025 PicMorph. All rights reserved.</p>
+
+        <main className="container mx-auto flex-1 px-6 py-8">{children}</main>
+
+        <footer className="bg-gray-800 text-white text-center py-4">
+          <p className="text-sm">
+            &copy; {new Date().getFullYear()} PicMorph. All rights reserved.
+          </p>
         </footer>
       </body>
     </html>
